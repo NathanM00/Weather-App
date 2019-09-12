@@ -1,33 +1,33 @@
 import React from 'react';
-import {Card,CardContent, makeStyles} from '@material-ui/core'
+import { Card, CardContent, makeStyles } from '@material-ui/core'
 
 function WeatherCard(props) {
     const classes = useStyles();
     const darkClasses = darkStyles();
-    var  colorScheme = classes;
+    var colorScheme = classes;
 
-    function handleClick(){
-        if(typeof props.onClick ==='function'){
+    function handleClick() {
+        if (typeof props.onClick === 'function') {
             props.onClick(props);
         }
     }
 
-    if(props.today === props.num){ 
-        colorScheme = darkClasses ;
+    if (props.today === props.num) {
+        colorScheme = darkClasses;
     }
 
-        return (
-            <Card className={colorScheme.container} onClick={handleClick}>
-                <CardContent className={colorScheme.content}>
-                    <h3 className={colorScheme.title}>{props.day}</h3>
-                    <img className={colorScheme.icon} src={props.icon} alt=""></img>
-                    <p className={colorScheme.data}>
-                        <span>{props.max}</span> 
-                        {props.min}
-                    </p>
-                </CardContent>
-            </Card>
-        );
+    return (
+        <Card className={colorScheme.container} onClick={handleClick}>
+            <CardContent className={colorScheme.content}>
+                <h3 className={colorScheme.title}>{props.day}</h3>
+                <img className={colorScheme.icon} src={props.icon} alt=""></img>
+                <p className={colorScheme.data}>
+                    <span>{props.max}</span>
+                    {props.min}
+                </p>
+            </CardContent>
+        </Card>
+    );
 }
 
 const useStyles = makeStyles(theme => ({
@@ -37,26 +37,26 @@ const useStyles = makeStyles(theme => ({
         margin: 0,
         color: '#40a3ff',
     },
-    icon:{
+    icon: {
         width: '100px',
         marginTop: '10px',
         marginBottom: '10px',
     },
-    data:{
+    data: {
         fontSize: 20,
         margin: 0,
         color: theme.palette.grey[500],
-        '& span':   {
+        '& span': {
             color: '#40a3ff',
         },
     },
-    content:{
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            alignItems: 'center',
+    content: {
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
     },
-    container:{
+    container: {
         margin: '10px 10px',
     },
 
@@ -66,29 +66,29 @@ const darkStyles = makeStyles(theme => ({
     title: {
         fontSize: 35,
         margin: 0,
-        color:'#FFDB3C',
+        color: '#FFDB3C',
     },
-    icon:{
+    icon: {
         width: '100px',
         marginTop: '10px',
         marginBottom: '10px',
     },
-    data:{
+    data: {
         fontSize: 20,
         margin: 0,
         color: theme.palette.grey[200],
-        '& span':   {
+        '& span': {
             color: '#FFDB3C',
         },
     },
-    content:{
-            backgroundColor: theme.palette.grey[900],
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            alignItems: 'center',
+    content: {
+        backgroundColor: theme.palette.grey[900],
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
     },
-    container:{
+    container: {
         margin: '10px 10px',
     },
 
