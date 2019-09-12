@@ -12,7 +12,7 @@ function WeatherCard(props) {
         }
     }
 
-    if(props.to === props.num){ 
+    if(props.today === props.num){ 
         colorScheme = darkClasses ;
     }
 
@@ -28,7 +28,6 @@ function WeatherCard(props) {
                 </CardContent>
             </Card>
         );
-    
 }
 
 const useStyles = makeStyles(theme => ({
@@ -62,7 +61,6 @@ const useStyles = makeStyles(theme => ({
     },
 
 }));
-
 const darkStyles = makeStyles(theme => ({
 
     title: {
@@ -95,5 +93,4 @@ const darkStyles = makeStyles(theme => ({
     },
 
 }));
-
 export default WeatherCard;

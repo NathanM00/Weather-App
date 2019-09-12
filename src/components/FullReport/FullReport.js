@@ -11,7 +11,8 @@ function FullReport(props) {
             props.onClick(props.open);
         }
     }
-    if(props.to === props.num){ 
+
+    if(props.today === props.num){ 
         colorScheme = darkClasses ;
     }
 
@@ -36,7 +37,6 @@ function FullReport(props) {
                         </div>
                 </Modal>
         );
-    
 }
 
 const useStyles = makeStyles(theme => ({
