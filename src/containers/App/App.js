@@ -14,24 +14,13 @@ function App() {
     setData(null);
   };
 
-  function handleClick(current) {
-    setData(current);
-  }
-
   return (
     <Router>
       <div className="App">
         <h1>En toda parte</h1>
 
         <Route path="/" exact component ={Home}/>
-        <Route path="/week" exact component ={Week}/>
-
-        {data !== null && <FullReport
-          {...data}
-          open={data !== null}
-          onClick={handleClose}
-          today={today}
-        />}
+        <Route path="/week" component ={Week}/>
 
         <CssBaseline />
       </div>

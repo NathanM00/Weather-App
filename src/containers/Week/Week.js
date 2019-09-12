@@ -2,6 +2,7 @@ import React from 'react';
 import { Grid } from '@material-ui/core';
 import WeatherCard from '../../components/WeatherCard/WeatherCard';
 import transformInfo from '../../utils/transformInfo';
+import { Route } from 'react-router-dom';
 
 function Week(props) {
 
@@ -19,7 +20,7 @@ function Week(props) {
     }, []);
 
     return <Grid container spacing={3}>
-        <Grid item>
+        <Grid item xs={2} >
             <h2>You are in the week page panita</h2>
         </Grid>
 
@@ -34,6 +35,11 @@ function Week(props) {
                 </Grid>
             })}
         </Grid>
+
+        <Route path="/week/:day" render={(props) => {
+           console.log(props.match.params.day);
+            return null;
+        }} />
     </Grid>
 }
 
