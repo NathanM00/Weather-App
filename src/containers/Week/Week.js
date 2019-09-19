@@ -3,10 +3,23 @@ import { Grid } from '@material-ui/core';
 import WeatherCard from '../../components/WeatherCard/WeatherCard';
 import transformInfo from '../../utils/transformInfo';
 import { Route } from 'react-router-dom';
+import FullReport from '../../components/FullReport/FullReport';
+
+var today = 0;
 
 function Week(props) {
-
+    const [data, setData] = React.useState(null);
     const [days, setDays] = React.useState([]);
+
+    function handleClick(current) {
+        setData(current);
+        props.history.push('/week/' + current.day);
+    }
+
+    const handleClose = (isOpen) => {
+        setData(null);
+    };
+
     React.useEffect(function () {
         var promise = fetch('http://api.openweathermap.org/data/2.5/forecast?q=Cali,couk&APPID=3e2faa989fda1287debdc076b7287df2');
 
@@ -15,7 +28,16 @@ function Week(props) {
         })
             .then((info) => {
                 var list = transformInfo(info);
+                var url = document.URL;
+                url = url.replace('http://localhost:3000/week/','');
                 setDays(list);
+                for (var i = 0; i < list.length; i++) {
+                    console.log(url);
+                    console.log(list[i]);
+                    if( list[i].day === url){
+                        setData(list[i]);
+                    }
+                }
             });
     }, []);
 
@@ -29,16 +51,23 @@ function Week(props) {
                 return <Grid item md={2} xs={4} key={item.day} >
                     <WeatherCard
                         {...item}
-                        //onClick={handleClick}
+                        onClick={handleClick}
                         today={0}
                     />
                 </Grid>
             })}
         </Grid>
 
-        <Route path="/week/:day" render={(props) => {
-           console.log(props.match.params.day);
-            return null;
+        <Route path="/week/:day" render={() => {
+            return (
+                
+                <FullReport
+                    {...data}
+                    open={data !== null}
+                    onClick={handleClose}
+                    today={today}
+                />
+            )
         }} />
     </Grid>
 }
